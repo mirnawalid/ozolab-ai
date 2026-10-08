@@ -1,0 +1,7 @@
+# How to use the dashboard in the competition (Green Loop 2026)
+Prototype required for the final presentation; final evaluation 21 Oct - 15 Nov 2026; closing day 23 Nov 2026. Scoring: environmental impact 30 %, innovation 25 %, feasibility 20 %, economics 15 %, presentation 10 %.
+1. **Before building the demo:** run 3 identical baseline runs (Experiment Planner -> wastewater). Log all in Experiment History. These give the noise level and your first real data.
+2. **Live demo (3-5 min):** Sample Analysis (enter real readings, tick safety gates) -> Recommendation (show the staged recipe and the UNKNOWN list) -> What-if (scenarios A/B/C) -> Experiment Planner ("what to run next") -> Experiment History (log result, model count increases).
+3. **Say honestly:** we have performed 0 logged experiments so far (until you log some); 61 pulp-bleaching experiments and the 1,033 ACS daily records are published/historical data from other sources, not ours; wastewater predictions start only after your own runs (B); the ACS file is a benchmark with an integrity warning; the old paper-drip idea was replaced by an indicator. Never say 'everyone can use it' - say 'a prototype for laboratory staff and researchers that could be developed for wider use'.
+4. **Calibrate the ozonizer** (mg O3/h) so doses become quantitative; enter it on the Sample page.
+5. **Remember:** download `experiments.csv` after each session and commit it to GitHub - Streamlit Cloud storage is temporary.

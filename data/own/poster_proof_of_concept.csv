@@ -1,0 +1,3 @@
+Source,Sample_Label,pH,Temp_C,Conductivity,TDS_mg_L,Interpretation_Status,Note
+Team poster - Proof of Concept slide,1,7.13,,,765,UNVERIFIED,Poster does not say whether 1/2 are before/after. NOT used for training.
+Team poster - Proof of Concept slide,2,7.07,,,784,UNVERIFIED,Poster does not say whether 1/2 are before/after. If 2 is the treated sample then TDS rose by 19 mg/L (2.5 %) - cannot be distinguished from measurement noise without replicates; TDS shows no removal.

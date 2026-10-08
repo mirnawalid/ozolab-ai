@@ -1,0 +1,224 @@
+{
+  "_readme": "Human-defined settings. Edit here; the AI works INSIDE these limits and cannot change or bypass them (a violated safety condition always takes priority and blocks the recipe). Every entry states its source/status.",
+  "limits": {
+    "outlet_criteria": {
+      "pH_min": 6.0,
+      "pH_max": 9.0,
+      "temp_max_C": 35,
+      "TDS_max_mg_L": 2000,
+      "source": "Read from the team's 'Proof of Concept' poster slide (criteria of out water). The legal document behind it is NOT cited on the poster -> verify."
+    },
+    "raw_water_criteria": {
+      "pH_min": 6.0,
+      "pH_max": 9.5,
+      "temp_max_C": 43,
+      "TDS_max_mg_L": 2000,
+      "source": "Same poster slide (criteria of raw water). Verify."
+    },
+    "ozone_air_exposure": {
+      "OSHA_PEL_ppm_8h_TWA": 0.1,
+      "source": "OSHA permissible exposure limit for ozone (29 CFR 1910.1000 Table Z-1). Verify against the current OSHA/NIOSH page; Egyptian requirements may differ."
+    }
+  },
+  "assumptions_editable": {
+    "max_consistency_pct_for_this_hardware": {
+      "value": 3.0,
+      "status": "ASSUMPTION",
+      "why": "Small diaphragm pump + PVC tube; fibre-suspension handling NOT validated. 3 % is the lowest consistency in the literature tables (P3, Hand-mixing row of the patent)."
+    },
+    "tss_prefilter_trigger_mg_L": {
+      "value": 50,
+      "status": "ASSUMPTION",
+      "why": "Suspended solids consume ozone; no validated threshold exists for this device."
+    },
+    "plateau_stop_pct": {
+      "value": 5,
+      "status": "ASSUMPTION",
+      "why": "Stop when the absorbance changes by less than this between two consecutive samples."
+    },
+    "poster_reference_run": {
+      "volume_L": 100,
+      "hours": 10,
+      "status": "TEAM-STATED (poster: 'Individual Units 50-100 L / 10 hours')",
+      "note": "Not measured in this project's data."
+    },
+    "min_own_records_for_own_model": {
+      "value": 12,
+      "status": "DEVELOPER-DEFINED SOFTWARE SETTING (engineering assumption)",
+      "why": "Minimum number of OUR OWN wastewater runs before the app fits a model on them. It was chosen by the app developers as a rough floor. It is NOT from a paper or dataset, it is NOT a count of experiments we performed, and no statistical justification has been checked -> NEEDS TEAM DECISION / SOURCE before it is described as adequate."
+    },
+    "design_space_wastewater": {
+      "duration_multiplier": [
+        0.5,
+        2.0
+      ],
+      "pH": [
+        5.0,
+        9.0
+      ],
+      "temperature_C": [
+        15,
+        35
+      ],
+      "status": "HUMAN-DEFINED exploration bounds (not validated optima)"
+    },
+    "range_tolerance_fraction": {
+      "value": 0.1,
+      "status": "HUMAN-DEFINED",
+      "why": "Inputs beyond the training range by more than this fraction of the range are RED (unsupported); inside the tolerance they are YELLOW."
+    },
+    "operating_pH_window_default": {
+      "value": [
+        2.0,
+        9.6
+      ],
+      "status": "HUMAN-DEFINED",
+      "why": "Literature tested pH 0.26-9.6, but pH < 2 needs strong-acid handling that has NOT been assessed for this rig (pump, PVC fittings, exposed breadboard wiring). Default lower bound 2.0; lowering it is a conscious human decision."
+    },
+    "control_pH_and_temperature_in_design": {
+      "value": false,
+      "status": "HUMAN-DEFINED",
+      "why": "The team states pH 6.3 and 25 C are natural sample conditions. By default the experiment planner therefore varies only treatment duration. Set true only if the team decides to deliberately control pH/temperature."
+    }
+  },
+  "device_specs_from_poster": {
+    "ozone_generator_W": 15,
+    "o2_or_air_pump_W_min": 3,
+    "o2_or_air_pump_W_max": 5,
+    "energy_claim_kWh_per_10h": [
+      0.15,
+      0.2
+    ],
+    "ozone_output_g_per_h": null,
+    "contact_column_volume_L": null,
+    "air_flow_L_min": null,
+    "liquid_pump_flow_L_min": null,
+    "note": "null = UNKNOWN. Not stated on the poster and not measurable from the photos. Must be measured/calibrated."
+  },
+  "hardware": [
+    {
+      "item": "PVC pipe contact column (horizontal, on wooden board)",
+      "evidence": "Photos 2,3",
+      "status": "CONFIRMED_IN_PHOTO",
+      "unknowns": "internal volume, length, diameter, material rating for ozone"
+    },
+    {
+      "item": "Small diaphragm/mini liquid pump (white head, DC motor)",
+      "evidence": "Photos 1,2,3",
+      "status": "CONFIRMED_IN_PHOTO",
+      "unknowns": "flow rate, ozone/fibre compatibility"
+    },
+    {
+      "item": "L298N-type motor driver (red board)",
+      "evidence": "Photos 3,5",
+      "status": "CONFIRMED_IN_PHOTO",
+      "unknowns": ""
+    },
+    {
+      "item": "ESP-class development board on breadboard",
+      "evidence": "Photos 3,4,6 (poster says ESP32)",
+      "status": "CONFIRMED_IN_PHOTO",
+      "unknowns": "exact model"
+    },
+    {
+      "item": "Breadboard with 3 blue LEDs ('energy recovery' claim)",
+      "evidence": "Photos 3,4; poster",
+      "status": "CONFIRMED_IN_PHOTO",
+      "unknowns": "energy actually recovered is NOT measured here"
+    },
+    {
+      "item": "Clear tubing + plastic reservoir/tank",
+      "evidence": "Photos 2,3",
+      "status": "CONFIRMED_IN_PHOTO",
+      "unknowns": "reservoir volume"
+    },
+    {
+      "item": "Ozone generator ~15 W with air stone (white 'ozonizer' unit)",
+      "evidence": "Poster 'Our Solution' slide only",
+      "status": "POSTER_ONLY",
+      "unknowns": "ozone output g/h, concentration"
+    },
+    {
+      "item": "Air/O2 pump 3-5 W",
+      "evidence": "Poster only",
+      "status": "POSTER_ONLY",
+      "unknowns": "air flow L/min"
+    },
+    {
+      "item": "Spectrophotometer (Biowave-type) with wavelength scan",
+      "evidence": "Poster 'Proof of Concept'",
+      "status": "POSTER_ONLY",
+      "unknowns": "availability during competition"
+    },
+    {
+      "item": "pH, temperature, TDS meters",
+      "evidence": "Poster results table",
+      "status": "POSTER_ONLY",
+      "unknowns": "model/calibration"
+    },
+    {
+      "item": "COD test (digestion/photometer)",
+      "evidence": "none",
+      "status": "UNKNOWN",
+      "unknowns": "not shown anywhere"
+    },
+    {
+      "item": "TSS measurement (filter/oven/balance)",
+      "evidence": "none",
+      "status": "UNKNOWN",
+      "unknowns": ""
+    },
+    {
+      "item": "Pulp brightness meter (ISO 2470) / colorimeter for L*a*b*",
+      "evidence": "none",
+      "status": "NOT_CURRENTLY_AVAILABLE",
+      "unknowns": "needed for the pulp module"
+    },
+    {
+      "item": "Ozone off-gas destructor / ozone gas monitor",
+      "evidence": "none visible",
+      "status": "NOT_CURRENTLY_AVAILABLE",
+      "unknowns": "must be confirmed before any run"
+    },
+    {
+      "item": "Emergency stop",
+      "evidence": "none visible in photos",
+      "status": "UNKNOWN",
+      "unknowns": "photos show exposed breadboard wiring beside a water container"
+    },
+    {
+      "item": "Precipitation / adsorption stage for heavy metals",
+      "evidence": "none",
+      "status": "NOT_CURRENTLY_AVAILABLE",
+      "unknowns": "ozone alone does not remove metals"
+    }
+  ],
+  "team_specification": {
+    "_source": "Team's handwritten notes + voice note (2026-10-04). TEAM-STATED, not independently measured here. Verify against the ozonizer label/manual before publication.",
+    "o2_flow_L_per_h": {
+      "min": 90,
+      "max": 120,
+      "unit": "L/hour",
+      "condition_type": "CONTROLLED device setting",
+      "status": "TEAM-STATED"
+    },
+    "ozone_generation_max": {
+      "value": 400,
+      "unit": "mg/hour",
+      "condition_type": "CONTROLLED device setting (upper limit)",
+      "status": "TEAM-STATED; UNIT NEEDS SOURCE VERIFICATION",
+      "note": "The handwritten note is hard to read (mg/hr vs ml/hr). mg O3/hour is the usual unit for an ozone generator's OUTPUT RATE; it is a rate, not a concentration. Confirm on the ozonizer label/manual."
+    },
+    "water_temperature_C": {
+      "value": 25,
+      "condition_type": "NATURAL / background sample condition (measured, not adjusted)",
+      "status": "TEAM-STATED"
+    },
+    "sample_pH": {
+      "value": 6.3,
+      "condition_type": "NATURAL / background sample condition (measured, not adjusted)",
+      "status": "TEAM-STATED actual value",
+      "note": "The handwritten note first shows 7, corrected by hand to 6.3. The poster's two PoC samples show pH 7.13 / 7.07 - the team must state which sample the 6.3 belongs to (NEEDS CLARIFICATION)."
+    }
+  }
+}
