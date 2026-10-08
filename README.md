@@ -85,3 +85,11 @@ See `docs/DEPLOYMENT_WINDOWS.md` (GitHub -> Streamlit Community Cloud -> public 
 app.py  pages/  src/  config/settings.json  data/{raw,literature,own}  models/  Project_Archive/  docs/  notebooks/  scripts/  tests/
 ```
 Safety limits and assumptions live in `config/settings.json`; every entry states its source/status. The AI works inside them: if a safety rule is violated, the rule takes priority and the recommendation is blocked.
+
+---
+
+## Contact
+
+| Phone | Email | LinkedIn | GitHub |
+|---|---|---|---|
+| [+20 1090313641](tel:+201090313641) | [mws103561@gu.edu.eg](mailto:mws103561@gu.edu.eg) | [LinkedIn](https://linkedin.com/in/mirna-walid-145a163b5) | [GitHub](https://github.com/mirnawalid) |
